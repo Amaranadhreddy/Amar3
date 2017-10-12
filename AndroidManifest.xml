@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ap.gov.tms.pilgramfingerverification">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <application
+        android:name="android.support.multidex.MultiDexApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="55566c8d45c1c67df75d1753770b9f3f09ceefa2" />
+        <activity
+            android:name="ap.gov.tms.splash.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ap.gov.tms.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FingerVerificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ServiceSelectionActivity"
+            android:screenOrientation="portrait" />
+
+        <service
+            android:name="ap.gov.tms.receiverservices.Base64StringService"
+            android:enabled="true"
+            android:exported="false"
+            android:stopWithTask="false">
+        </service>
+        <receiver
+            android:name="ap.gov.tms.receiverservices.ServiceReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+            <intent-filter>
+            <action android:name="ap.gov.tms.receiverservices.breceiver"/>
+        </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
